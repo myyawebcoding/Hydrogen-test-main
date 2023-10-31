@@ -49,8 +49,7 @@ export default function ProductOptions({options, selectedVariant}) {
             <h3 className="whitespace-pre-wrap max-w-prose font-bold text-lead min-w-[4rem]">
               {option.name}
             </h3>
-
-            <div className="flex flex-wrap items-baseline gap-4">
+            <div className="grid grid-cols-2 gap-2">
               {option.values.map((value) => {
                 const linkParams = new URLSearchParams(searchParams);
                 const isSelected = currentOptionVal === value;
@@ -61,8 +60,8 @@ export default function ProductOptions({options, selectedVariant}) {
                     to={`${pathname}?${linkParams.toString()}`}
                     preventScrollReset
                     replace
-                    className={`leading-none py-1 border-b-[1.5px] cursor-pointer hover:no-underline transition-all duration-200 ${
-                      isSelected ? 'border-gray-500' : 'border-neutral-50'
+                    className={`leading-none rounded-sm px-4 py-6 border-[1.5px] cursor-pointer hover:no-underline transition-all duration-200 ${
+                      isSelected ? 'border-[#B66355] bg-[#F0E0DB]' : 'border-[#E8E8E9]'
                     }`}
                   >
                     {value}

@@ -50,34 +50,34 @@ export default function ProductHandle() {
   const {shop, product, selectedVariant} = useLoaderData();
 
   return (
-    <section className="w-full gap-4 md:gap-8 grid px-6 md:px-8 lg:px-12">
-      <div className="grid items-start gap-6 lg:gap-20 md:grid-cols-2 lg:grid-cols-3">
-        <div className="grid md:grid-flow-row  md:p-0 md:overflow-x-hidden md:grid-cols-2 md:w-full lg:col-span-2">
-          <div className="md:col-span-2 snap-center card-image aspect-square md:w-full w-[80vw] shadow rounded">
+    <section className="w-full">
+      <div className="">
+        <div className="">
+          <div className="grid gap-2">
+            <h1 className="text-sm font-bold leading-10 whitespace-normal">
+              {product.title}
+            </h1>
+          </div>
+          <div className="-mx-4">
             <Image
               className={`w-full h-full aspect-square object-cover`}
               data={product.selectedVariant?.image || product.featuredImage}
             />
           </div>
         </div>
-        <div className="md:sticky md:mx-auto max-w-xl md:max-w-[24rem] grid gap-2 p-0 md:p-6 md:px-0 top-[6rem] lg:top-[8rem] xl:top-[10rem]">
-          <div className="grid gap-2">
-            <h1 className="text-4xl font-bold leading-10 whitespace-normal">
-              {product.title}
-            </h1>
-            <span className="max-w-prose whitespace-pre-wrap inherit text-copy opacity-50 font-medium">
-              {product.vendor}
-            </span>
-          </div>
-          {/* <ProductOptions
-            options={product.options}
-            selectedVariant={selectedVariant}
-          />
-          <p>Selected Variant: {product.selectedVariant?.id}</p> */}
+        <div className="md:sticky md:mx-auto max-w-xl md:max-w-[24rem] grid gap-2 p-0 md:p-6 md:px-0 top-[6rem] lg:top-[8rem] xl:top-[10rem] py-5">
+          {/* <span className="max-w-prose whitespace-pre-wrap inherit text-copy opacity-50 font-medium">
+            {product.vendor}
+          </span> */}
+          <div
+            className="prose text-black text-sm"
+            dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+          ></div>
           <ProductOptions
             options={product.options}
             selectedVariant={selectedVariant}
           />
+          {/* <p>Selected Variant: {product.selectedVariant?.id}</p> */}
           <Money
             withoutTrailingZeros
             data={selectedVariant.price}
@@ -87,7 +87,7 @@ export default function ProductHandle() {
             <ShopPayButton
               storeDomain={shop.primaryDomain.url}
               variantIds={[selectedVariant?.id]}
-              width={'400px'}
+              width={'100%'}
             />
           )}
           <CartForm
@@ -121,11 +121,6 @@ export default function ProductHandle() {
               </>
             )}
           </CartForm>
-
-          <div
-            className="prose border-t border-gray-200 pt-6 text-black text-md"
-            dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-          ></div>
         </div>
       </div>
     </section>
