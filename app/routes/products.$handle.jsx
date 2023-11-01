@@ -3,6 +3,8 @@ import { useLoaderData } from '@remix-run/react';
 import { json } from '@shopify/remix-oxygen';
 import {Image, Money, ShopPayButton} from '@shopify/hydrogen-react';
 import ProductOptions from '~/components/ProductOptions';
+// import { NavLink } from '@remix-run/react';
+
 
 const seo = ({data}) => ({
   title: data?.product?.title,
@@ -47,83 +49,97 @@ export async function loader({params, context, request}) {
 }
 
 export default function ProductHandle() {
-  const {shop, product, selectedVariant} = useLoaderData();
+  const { shop, product, selectedVariant } = useLoaderData();
 
   return (
-    <section className="w-full">
-      <div className="">
+    <>
+      <section className="w-full">
         <div className="">
-          <div className="grid gap-2">
-            <h1 className="text-sm font-bold leading-10 whitespace-normal">
-              {product.title}
-            </h1>
+          <div className="">
+            <div className="grid gap-2">
+              {/* <h1 className="text-sm font-bold leading-10 whitespace-normal">
+                {product.title}
+              </h1> */}
+
+              {/* <NavLink
+                to=".."
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                Go back!
+              </NavLink> */}
+            </div>
+            <div className="">
+              <Image
+                className={`w-full h-full aspect-square object-cover`}
+                data={product.selectedVariant?.image || product.featuredImage}
+              />
+            </div>
           </div>
-          <div className="-mx-4">
-            <Image
-              className={`w-full h-full aspect-square object-cover`}
-              data={product.selectedVariant?.image || product.featuredImage}
-            />
+          <div className="md:sticky md:mx-auto max-w-xl md:max-w-[24rem] grid gap-2 p-0 md:p-6 md:px-0 top-[6rem] lg:top-[8rem] xl:top-[10rem] py-5 px-4">
+            {/* <span className="max-w-prose whitespace-pre-wrap inherit text-copy opacity-50 font-medium">
+              {product.vendor}
+            </span> */}
+            <div
+              className="prose text-black text-sm"
+              dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+            ></div>
+            <div className="text-xs">商品情報詳細</div>
           </div>
-        </div>
-        <div className="md:sticky md:mx-auto max-w-xl md:max-w-[24rem] grid gap-2 p-0 md:p-6 md:px-0 top-[6rem] lg:top-[8rem] xl:top-[10rem] py-5">
-          {/* <span className="max-w-prose whitespace-pre-wrap inherit text-copy opacity-50 font-medium">
-            {product.vendor}
-          </span> */}
-          <div
-            className="prose text-black text-sm"
-            dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-          ></div>
-          <ProductOptions
-            options={product.options}
-            selectedVariant={selectedVariant}
-          />
-          {/* <p>Selected Variant: {product.selectedVariant?.id}</p> */}
-          <Money
-            withoutTrailingZeros
-            data={selectedVariant.price}
-            className="text-xl font-semibold mb-2"
-          />
-          {selectedVariant.availableForSale && (
-            <ShopPayButton
-              storeDomain={shop.primaryDomain.url}
-              variantIds={[selectedVariant?.id]}
-              width={'100%'}
+          <div className="bg-[#F7F7F7] py-6 px-4">
+            <ProductOptions
+              options={product.options}
+              selectedVariant={selectedVariant}
             />
-          )}
-          <CartForm
-            route="/cart"
-            inputs={{
-              lines: [
-                {
-                  merchandiseId: selectedVariant.id,
-                },
-              ],
-            }}
-            action={CartForm.ACTIONS.LinesAdd}
-          >
-            {(fetcher) => (
-              <>
-                <button
-                  type="submit"
-                  onClick={() => {
-                    window.location.href = window.location.href + '#cart-aside';
-                  }}
-                  disabled={
-                    !selectedVariant.availableForSale ??
-                    fetcher.state !== 'idle'
-                  }
-                  className="border border-black rounded-sm w-full px-4 py-2 text-white bg-black uppercase hover:bg-white hover:text-black transition-colors duration-150"
-                >
-                  {selectedVariant?.availableForSale
-                    ? 'Add to cart'
-                    : 'Sold out'}
-                </button>
-              </>
+            {/* <p>Selected Variant: {product.selectedVariant?.id}</p> */}
+            <Money
+              withoutTrailingZeros
+              data={selectedVariant.price}
+              className="text-xl font-semibold mb-2"
+            />
+            {selectedVariant.availableForSale && (
+              <ShopPayButton
+                storeDomain={shop.primaryDomain.url}
+                variantIds={[selectedVariant?.id]}
+                width={'100%'}
+              />
             )}
-          </CartForm>
+            <CartForm
+              route="/cart"
+              inputs={{
+                lines: [
+                  {
+                    merchandiseId: selectedVariant.id,
+                  },
+                ],
+              }}
+              action={CartForm.ACTIONS.LinesAdd}
+            >
+              {(fetcher) => (
+                <>
+                  <button
+                    type="submit"
+                    onClick={() => {
+                      window.location.href = window.location.href + '#cart-aside';
+                    }}
+                    disabled={
+                      !selectedVariant.availableForSale ??
+                      fetcher.state !== 'idle'
+                    }
+                    className="border border-black rounded-sm w-full px-4 py-2 text-white bg-black uppercase hover:bg-white hover:text-black transition-colors duration-150"
+                  >
+                    {selectedVariant?.availableForSale
+                      ? 'Add to cart'
+                      : 'Sold out'}
+                  </button>
+                </>
+              )}
+            </CartForm>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

@@ -1,7 +1,9 @@
 import {useLoaderData} from '@remix-run/react';
 import {json} from '@shopify/remix-oxygen';
 import ProductGrid from '../components/ProductGrid';
-import {getPaginationVariables} from '@shopify/hydrogen';
+import { getPaginationVariables } from '@shopify/hydrogen';
+import { StackNav } from '../components/StackNav';
+
 const seo = ({data}) => ({
   title: data?.collection?.title,
   description: data?.collection?.description.substr(0, 154),
@@ -46,11 +48,11 @@ export default function Collection() {
   const {collection} = useLoaderData();
   return (
     <>
-      <header className="grid w-full gap-8 py-8 justify-items-start">
+      {/* <header className="justify-items-start">
         <h1 className="text-4xl whitespace-pre-wrap font-bold inline-block">
           {collection.title}
         </h1>
-        {/* {collection.description && (
+        {collection.description && (
           <div className="flex items-baseline justify-between w-full">
             <div>
               <p className="max-w-md whitespace-pre-wrap inherit text-copy inline-block">
@@ -58,8 +60,8 @@ export default function Collection() {
               </p>
             </div>
           </div>
-        )} */}
-      </header>
+        )}
+      </header> */}
       <ProductGrid
         collection={collection}
         url={`/collections/${collection.handle}`}

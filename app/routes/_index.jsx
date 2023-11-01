@@ -15,7 +15,7 @@ export async function loader({context}) {
 export default function Index() {
   const {collections} = useLoaderData();
   return (
-    <section className="w-full gap-4">
+    <section className="w-full gap-4 px-4">
       <h2 className="whitespace-pre-wrap max-w-prose font-bold text-sm mb-3">
         クリエイターを選ぶ
       </h2>
@@ -24,15 +24,17 @@ export default function Index() {
           return (
             <Link to={`/collections/${collection.handle}`} key={collection.id} className="block">
               <div className="grid gap-2">
-                {collection?.image && (
-                  <Image
-                    alt={`Image of ${collection.title}`}
-                    data={collection.image}
-                    key={collection.id}
-                    sizes="(max-width: 32em) 100vw, 33vw"
-                    crop="center"
-                  />
-                )}
+                <div className="border border-[#E8E8E9] rounded-full overflow-hidden">
+                  {collection?.image && (
+                    <Image
+                      alt={`Image of ${collection.title}`}
+                      data={collection.image}
+                      key={collection.id}
+                      sizes="(max-width: 32em) 100vw, 33vw"
+                      crop="center"
+                    />
+                  )}
+                </div>
                 <h2 className="whitespace-pre-wrap max-w-prose font-medium text-xs text-center">
                   {collection.title}
                 </h2>

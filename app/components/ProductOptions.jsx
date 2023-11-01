@@ -34,6 +34,29 @@ export default function ProductOptions({options, selectedVariant}) {
 
   return (
     <div className="grid gap-4 mb-6">
+      <div className="flex flex-col flex-wrap gap-y-2">
+        <h3 className="whitespace-pre-wrap max-w-prose font-bold text-sm text-lead min-w-[4rem]">
+          スケジュールをお選びください
+        </h3>
+        <div className="grid grid-cols-2 gap-2">
+          <div className="text-xs leading-none rounded-lg px-4 h-16 flex items-center border-[1.5px] cursor-pointer hover:no-underline transition-all duration-200">2023年12月受け取り</div>
+          <div className="text-xs leading-none rounded-lg px-4 h-16 flex items-center border-[1.5px] cursor-pointer hover:no-underline transition-all duration-200">
+            <div className="grid gap-1">
+              <div>2024年1月受け取り</div>
+              <div className="text-xs text-red-500">売り切れ</div>
+            </div>
+          </div>
+          <div className="text-xs leading-none rounded-lg px-4 h-16 flex items-center border-[1.5px] cursor-pointer hover:no-underline transition-all duration-200">2024年2月受け取り</div>
+          <div className="text-xs leading-none rounded-lg px-4 h-16 flex items-center border-[1.5px] cursor-pointer hover:no-underline transition-all duration-200">2024年3月受け取り</div>
+          <div className="text-xs leading-none rounded-lg px-4 h-16 flex items-center border-[1.5px] cursor-pointer hover:no-underline transition-all duration-200">2024年4月受け取り</div>
+          <div className="text-xs leading-none rounded-lg px-4 h-16 flex items-center border-[1.5px] cursor-pointer hover:no-underline transition-all duration-200">
+            <div className="grid gap-1">
+              <div>2024年5月受け取り</div>
+              <div className="text-xs text-red-500">売り切れ</div>
+            </div>
+          </div>
+        </div>
+      </div>
       {options.map((option) => {
         if (!option.values.length) {
           return;
@@ -44,9 +67,9 @@ export default function ProductOptions({options, selectedVariant}) {
         return (
           <div
             key={option.name}
-            className="flex flex-col flex-wrap mb-4 gap-y-2 last:mb-0"
+            className="flex flex-col flex-wrap gap-y-2"
           >
-            <h3 className="whitespace-pre-wrap max-w-prose font-bold text-lead min-w-[4rem]">
+            <h3 className="whitespace-pre-wrap max-w-prose font-bold text-sm text-lead min-w-[4rem]">
               {option.name}
             </h3>
             <div className="grid grid-cols-2 gap-2">
@@ -60,8 +83,8 @@ export default function ProductOptions({options, selectedVariant}) {
                     to={`${pathname}?${linkParams.toString()}`}
                     preventScrollReset
                     replace
-                    className={`leading-none rounded-sm px-4 py-6 border-[1.5px] cursor-pointer hover:no-underline transition-all duration-200 ${
-                      isSelected ? 'border-[#B66355] bg-[#F0E0DB]' : 'border-[#E8E8E9]'
+                    className={`text-xs leading-none rounded-lg px-4 h-16 flex items-center border-[1.5px] cursor-pointer hover:no-underline transition-all duration-200 ${
+                      isSelected ? 'border-[#B66355] bg-[#F0E0DB]' : 'border-[#E8E8E9] bg-white'
                     }`}
                   >
                     {value}

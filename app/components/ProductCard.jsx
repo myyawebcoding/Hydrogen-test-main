@@ -7,8 +7,8 @@ export default function ProductCard({product}) {
 
   return (
     <Link to={`/products/${product.handle}`}>
-      <div className="flex border border-[#E8E8E9] rounded overflow-hidden">
-        <div className="flex-none w-28 relative">
+      <div className="flex items-center h-32 border border-[#E8E8E9] rounded-lg overflow-hidden bg-white">
+        <div className="flex-none w-28 h-full relative">
           {isDiscounted && (
             <label className="subpixel-antialiased absolute top-0 right-0 m-4 text-right text-notice text-red-600 text-xs">
               Sale
@@ -20,7 +20,7 @@ export default function ProductCard({product}) {
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
-        <div className="flex-auto p-6">
+        <div className="flex-auto px-4">
           <h3 className="max-w-prose text-copy w-full overflow-hidden  text-ellipsis mb-4">
             {product.title}
           </h3>
