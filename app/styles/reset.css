@@ -48,7 +48,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
   cursor: pointer;
 }
 
@@ -69,14 +69,15 @@ body {
 }
 
 body > main {
-  margin: 0 1rem 1rem 1rem;
+  /* margin: 0 1rem 1rem 1rem; */
+  margin: 0;
 }
 
 section {
-  padding: 1rem 0;
+  /* padding: 1rem 0;
   @media (min-width: 768px) {
     padding: 2rem 0;
-  }
+  } */
 }
 
 fieldset {

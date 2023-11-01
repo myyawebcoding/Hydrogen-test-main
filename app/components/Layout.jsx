@@ -4,6 +4,7 @@ import {Aside} from '~/components/Aside';
 import {Footer} from '~/components/Footer';
 import {Header, HeaderMenu} from '~/components/Header';
 import {CartMain} from '~/components/Cart';
+import {StackNav} from '~/components/StackNav';
 import {
   PredictiveSearchForm,
   PredictiveSearchResults,
@@ -18,7 +19,8 @@ export function Layout({cart, children = null, footer, header, isLoggedIn}) {
       <CartAside cart={cart} />
       <SearchAside />
       <MobileMenuAside menu={header.menu} />
-      <Header header={header} cart={cart} isLoggedIn={isLoggedIn} />
+      <StackNav title="hoge"/>
+      {/* <Header header={header} cart={cart} isLoggedIn={isLoggedIn} /> */}
       <main>{children}</main>
       <Suspense>
         <Await resolve={footer}>
