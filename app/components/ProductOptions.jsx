@@ -54,14 +54,13 @@ export default function ProductOptions({options, selectedVariant}) {
         </h3>
         <div className="grid grid-cols-2 gap-2">
           {items.map((item) => (
-            <>
-              <button
-                onClick={() => handleClick(item)}
-                className={`text-xs leading-none rounded-lg px-4 h-16 flex items-center border-[1.5px] cursor-pointer hover:no-underline transition-all duration-200 ${myValue === (item.value) ? 'border-[#B66355] bg-[#F0E0DB]' : 'border-[#E8E8E9] bg-white'}`}
-              >
-                {item.value}
-              </button>
-            </>
+            <button
+              key={item.value}
+              onClick={() => handleClick(item)}
+              className={`text-xs leading-none rounded-lg px-4 h-16 flex items-center border-[1.5px] cursor-pointer hover:no-underline transition-all duration-200 ${myValue === (item.value) ? 'border-[#B66355] bg-[#F0E0DB]' : 'border-[#E8E8E9] bg-white'}`}
+            >
+              {item.value}
+            </button>
           ))}
         </div>
       </div>

@@ -19,7 +19,7 @@ export default function Index() {
       <h2 className="whitespace-pre-wrap max-w-prose font-bold text-sm mb-3">
         クリエイターを選ぶ
       </h2>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-3 gap-2">
         {collections.nodes.map((collection) => {
           return (
             <Link to={`/collections/${collection.handle}`} key={collection.id} className="block">
