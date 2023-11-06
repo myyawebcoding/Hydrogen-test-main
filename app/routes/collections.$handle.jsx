@@ -2,7 +2,6 @@ import {useLoaderData} from '@remix-run/react';
 import {json} from '@shopify/remix-oxygen';
 import ProductGrid from '../components/ProductGrid';
 import { getPaginationVariables } from '@shopify/hydrogen';
-import { StackNav } from '../components/StackNav';
 
 const seo = ({data}) => ({
   title: data?.collection?.title,
