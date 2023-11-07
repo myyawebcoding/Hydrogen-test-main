@@ -114,6 +114,7 @@ export default function ProductHandle() {
               { custom._product-information }
             </div> */}
           </div>
+
           <div className="bg-[#F7F7F7] py-6 px-4">
             <ProductOptions
               options={product.options}
